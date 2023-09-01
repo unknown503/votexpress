@@ -25,7 +25,7 @@ export const Layout: FC<IWrapperProps> = ({ children }) => {
   const router = useRouter()
   const isAdminDashboard = router.asPath.split("/")[1].replace("#", "") === "dashboard"
   const finishBallot = useFinishBallotMutation()
-  const temporalTitle = router.asPath.split("/").slice(-1)[0]
+  const temporalTitle = router.asPath.split("/").slice(-1)[0].replace(/\?.*/, "")
   const queryClient = useQueryClient()
 
   const { data: ballot } = useQuery({
