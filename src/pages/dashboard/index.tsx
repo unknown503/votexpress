@@ -41,14 +41,15 @@ export default function Dashboard() {
 
   const stats: StatsGridProps = {
     data: [
-      { title: "Usuarios", value: results[1].data?.userCount, icon: "user" },
-      { title: "Votantes", value: results[2].data, icon: "voted" },
-      { title: "Candidatos", value: results[0].data?.length, icon: "candidate" },
+      { title: "Usuarios", value: results[1].data?.userCount, icon: "user", isLoading: results[1].isLoading },
+      { title: "Votantes", value: results[2].data, icon: "voted", isLoading: results[2].isLoading },
+      { title: "Candidatos", value: results[0].data?.length, icon: "candidate", isLoading: results[0].isLoading },
       {
         title: "Transcurrido",
         value: Math.abs(timestamp.diff(dayjs(), 'h')),
         min: Math.abs(timestamp.diff(dayjs(), 'm')),
         icon: "time",
+        isLoading: results[3].isLoading
       },
     ]
   }
@@ -58,12 +59,7 @@ export default function Dashboard() {
   return (
     <div className="pb-6">
       <HeaderTitle title="Dashboard" />
-      {isAnythingLoading ?
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
-          <SkeletonGroup show={isAnythingLoading} h={116} length={4} />
-        </div> :
-        <Stats data={stats.data} />
-      }
+      <Stats data={stats.data} />
       <HeaderTitle title="Estadísticas" className="pt-8" />
       {results[3].isLoading ? <Loader className="mx-auto" /> :
         <Graphs />

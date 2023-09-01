@@ -81,9 +81,7 @@ export const getNumberOfVoters = async () => {
   const userData = await fetchUserList()
   let votersCount = 0
   userData.userList.map(user => {
-    if (user.privateMetadata.vote.status) {
-      votersCount++
-    }
+    if (user.privateMetadata?.vote?.status) votersCount++
   })
   return votersCount
 }
