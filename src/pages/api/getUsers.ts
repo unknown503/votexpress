@@ -16,7 +16,7 @@ export default async function handler(
     const metadata = await getUserPrivMetadata(userId)
 
     if (metadata.role === ROLES.ADMIN) {
-      const userList = await clerkClient.users.getUserList() as unknown as UserType[]
+      const userList = await clerkClient.users.getUserList({ limit: 100 }) as unknown as UserType[]
       const userCount = await clerkClient.users.getCount()
       res.status(200).json({ userList, userCount })
     } else {
@@ -26,4 +26,3 @@ export default async function handler(
     res.status(401).json({ error: 401, message: "There was an error" })
   }
 }
- 

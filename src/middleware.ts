@@ -13,7 +13,6 @@ export default withClerkMiddleware(async (request: NextRequest) => {
   const { userId } = getAuth(request)
 
   if (!isPrivate(path) && !userId) return NextResponse.next()
-  console.log({ userId })
 
   if (!userId) {
     const signInUrl = new URL('/sign-in', request.url)
@@ -22,7 +21,6 @@ export default withClerkMiddleware(async (request: NextRequest) => {
 
   const metadata = await getUserPrivMetadata(userId)
   const { cc, role } = metadata
-  console.log({ metadata, cc, role })
 
   if (role === undefined) {
     const updateRole = await updateUserRole(userId, ROLES.USER)
