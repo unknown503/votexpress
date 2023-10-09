@@ -1,6 +1,5 @@
 import { Project } from '@/config/projectData';
 import { createStyles, Container, Group, Anchor, rem } from '@mantine/core';
-import { MantineLogo } from '@mantine/ds';
 import Link from 'next/link';
 
 const useStyles = createStyles((theme) => ({

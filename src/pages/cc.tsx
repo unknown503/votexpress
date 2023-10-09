@@ -91,7 +91,7 @@ export default function UserCC() {
       return res
     },
     onError: (error: any) => {
-      Toast(error.message, )
+      Toast(error.message,)
     },
     onSuccess: (data) => {
       queryClient.invalidateQueries({ queryKey: [QUERY_KEYS.METADATA] })

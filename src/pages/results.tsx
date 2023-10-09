@@ -63,7 +63,7 @@ export default function candidates() {
       return
     }
     ballot.clean && router.replace("/candidates")
-    !metadata.metadata.vote.status && router.replace("/vote")
+    !metadata.metadata.vote?.status && router.replace("/vote")
   }, [ballot, metadata, candidates])
 
 

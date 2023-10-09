@@ -75,8 +75,6 @@ export const deleteUser = async (id: string) => {
   return deleteU
 }
 
-
-
 export const getNumberOfVoters = async () => {
   const userData = await fetchUserList()
   let votersCount = 0

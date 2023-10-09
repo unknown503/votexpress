@@ -19,6 +19,7 @@ export const Titles = {
   "dash-candidates": "Configuración de candidatos",
   ballot: "Panel de votaciones",
   cc: "Verificar cédula",
+  vote: "Votar",
 }
 
 export const FeaturedCards = [

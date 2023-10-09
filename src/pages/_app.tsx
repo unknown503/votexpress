@@ -16,12 +16,10 @@ const cache = createEmotionCache({
 const queryClient = new QueryClient()
 
 export default function App({ Component, pageProps }: AppProps) {
-  
   useEffect(() => {
     // @ts-ignore
     import('preline')
   }, [])
-
 
   return (
     <ClerkProvider localization={esES} {...pageProps} >

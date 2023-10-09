@@ -93,14 +93,6 @@ export default function vote() {
     <Container className="py-10 lg:py-20 mx-auto h-full">
       <div className="max-w-2xl mx-auto text-center mb-10 lg:mb-14">
         <h2 className="text-2xl font-semibold md:text-3xl md:leading-tight">Elige a un candidato</h2>
-        {/* <Button
-          component={Link}
-          href="/candidates"
-          variant="default"
-          mt={20}
-        >
-          Ver más información
-        </Button> */}
       </div>
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10 md:gap-12">
         <SkeletonGroup show={isLoading} h={112} length={9} />

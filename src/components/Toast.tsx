@@ -1,7 +1,7 @@
 import { notifications } from '@mantine/notifications';
 import { IconCheck, IconX } from '@tabler/icons-react';
 
-interface OpionsTypes {
+interface OptionTypes {
   message: string,
   title: string,
   color: string,
@@ -10,7 +10,7 @@ interface OpionsTypes {
 }
 
 export default function Toast(message: string, success?: boolean): void {
-  const options: OpionsTypes = {
+  const options: OptionTypes = {
     message,
     title: success ? "Éxito" : "Error",
     color: success ? "green" : "red",

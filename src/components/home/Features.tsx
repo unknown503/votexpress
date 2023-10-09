@@ -82,8 +82,8 @@ export default function FeaturesCards() {
       </Title>
 
       <Text c="dimmed" className={classes.description} ta="center" mt="md">
-        Con solo unos pocos clics, podrás elegir a tus representantes y emitir tu voto de manera ágil y eficiente. 
-        Di adiós a las largas filas y las complicaciones, y disfruta de un sistema electoral eficaz que se adapta a tu ritmo de vida. 
+        Con solo unos pocos clics, podrás elegir a tus representantes y emitir tu voto de manera ágil y eficiente.
+        Di adiós a las largas filas y las complicaciones, y disfruta de un sistema electoral eficaz que se adapta a tu ritmo de vida.
       </Text>
 
       <SimpleGrid cols={3} spacing="xl" mt={50} breakpoints={[{ maxWidth: 'md', cols: 1 }]}>

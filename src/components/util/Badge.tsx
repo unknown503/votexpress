@@ -37,7 +37,7 @@ interface BadgeI extends VariantProps<typeof badge> {
   label: string
 }
 
-export default function Badge({ icon, label, variant,size, ...props }: BadgeI) {
+export default function Badge({ icon, label, variant, size, ...props }: BadgeI) {
   return (
     <span className={badge({ variant, size })}{...props}>
       <>

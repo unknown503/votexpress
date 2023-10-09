@@ -15,6 +15,7 @@ import CustomHead from './layout/CustomHead';
 import { useUser } from '@clerk/nextjs';
 import { Loader } from '@mantine/core';
 import { toInvalidate } from '@/pages/dashboard/ballot';
+import { Project } from '@/config/projectData';
 
 interface IWrapperProps {
   children: ReactNode;
@@ -71,24 +72,22 @@ export const Layout: FC<IWrapperProps> = ({ children }) => {
   return (
     <>
       <Head>
-        <meta name="description" content="Radikal Voting" />
+        <meta name="description" content={Project.name}/>
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon" />
+        <link rel="shortcut icon" href="/favicon.png" type="image/x-icon" />
       </Head>
       <CustomHead title={temporalTitle} />
 
       <ModalsProvider modalProps={{ centered: true, lockScroll: true }}>
         {isAdminDashboard ?
-          <>
-            {!isSignedIn ?
-              <div className="h-screen flex items-center">
-                <Loader className="mx-auto" />
-              </div> :
-              <AdminSidebarAndHeader>
-                {children}
-              </AdminSidebarAndHeader>
-            }
-          </> :
+          !isSignedIn ?
+            <div className="h-screen flex items-center">
+              <Loader className="mx-auto" />
+            </div> :
+            <AdminSidebarAndHeader>
+              {children}
+            </AdminSidebarAndHeader>
+          :
           <>
             <Header />
             <main className="min-h-[80vh] xl:min-h-[82vh]">
