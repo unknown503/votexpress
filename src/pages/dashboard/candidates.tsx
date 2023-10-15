@@ -121,6 +121,7 @@ export default function candidates() {
       await queryClient.refetchQueries({ type: 'active' })
       Toast("Candidato creado", true)
       form.reset()
+      setPicFile(null)
       setSendForm(false)
       close()
     },
