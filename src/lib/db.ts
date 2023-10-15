@@ -118,7 +118,6 @@ export const getBallotSettings = async (): Promise<BallotTypes> => {
     }
 
     await setDoc(ballotDoc, data);
-    await resetUserVotes()
     return data
   }
 }
@@ -220,13 +219,17 @@ export const getVotesCount = async () => {
  */
 
 async function resetUserVotes() {
-  const users = await fetchUserList()
-  users.userList.map(async user => {
-    await updateUserVote(user.id, {
-      candidate: "",
-      status: false
+  try {
+    const users = await fetchUserList()
+    users.userList.map(async user => {
+      await updateUserVote(user.id, {
+        candidate: "",
+        status: false
+      })
     })
-  })
+  } catch (error) {
+    console.error({ error })
+  }
 }
 
 async function resetCandidatesVotes() {
