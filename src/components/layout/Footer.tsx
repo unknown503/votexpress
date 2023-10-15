@@ -1,6 +1,13 @@
+import { Links } from '@/config/links';
 import { Project } from '@/config/projectData';
+import { QUERY_KEYS } from '@/config/types';
+import { getBallotSettings } from '@/lib/db';
+import { useUser } from '@clerk/nextjs';
 import { createStyles, Container, Group, Anchor, rem } from '@mantine/core';
+import { useQuery } from '@tanstack/react-query';
 import Link from 'next/link';
+import { useMemo } from 'react';
+import Toast from '../Toast';
 
 const useStyles = createStyles((theme) => ({
   footer: {
@@ -28,13 +35,27 @@ const useStyles = createStyles((theme) => ({
   },
 }));
 
-interface FooterSimpleProps {
-  links: { link: string; label: string }[];
-}
 
-export default function Footer({ links }: FooterSimpleProps) {
+export default function Footer() {
   const { classes } = useStyles();
-  const items = links.map((link) => (
+  const { isSignedIn } = useUser()
+  const { data } = useQuery({
+    queryKey: [QUERY_KEYS.BALLOT_SETTINGS],
+    queryFn: () => getBallotSettings(),
+    onError: (error: any) => Toast(error.message),
+  })
+
+  const filteredLinks: typeof Links = useMemo(() => {
+    return Links.filter((link) => {
+      const isElectionLink = link?.election === undefined ? true : link?.election === data?.inProgress
+      const isNonUser = link?.nonUsers === !isSignedIn
+      const isSignedInOrNonUserLink = link?.auth === isSignedIn || isNonUser
+      const isNonClean = link?.nonClean !== data?.clean
+      return isNonUser || isElectionLink && isSignedInOrNonUserLink && isNonClean && !link.component ? link : null
+    })
+  }, [isSignedIn, data])
+
+  const items = filteredLinks.map((link) => (
     <Anchor<'a'>
       color="dimmed"
       key={link.label}

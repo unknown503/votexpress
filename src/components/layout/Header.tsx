@@ -1,4 +1,4 @@
-import { NavLinks } from '@/config/links';
+import { Links } from '@/config/links';
 import {
   createStyles,
   Header,
@@ -132,7 +132,7 @@ function NavLinksComponent({ closeDrawer }: NavLinksProps) {
   })
 
   const filteredLinks = useMemo(() => {
-    return NavLinks.filter((link) => {
+    return Links.filter((link) => {
       const isElectionLink = link?.election === undefined ? true : link?.election === data?.inProgress
       const isNonUser = link?.nonUsers === !isSignedIn
       const isSignedInOrNonUserLink = link?.auth === isSignedIn || isNonUser

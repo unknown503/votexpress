@@ -25,7 +25,7 @@ export const SidebarDashboardLinks: SidebarLinkI[] = [
   },
 ]
 
-export const NavLinks = [
+export const Links = [
   {
     "link": "/sign-in",
     "label": "Iniciar Sesión",
@@ -61,19 +61,4 @@ export const NavLinks = [
     "auth": true,
     "component": UserMenu
   },
-]
-
-export const FooterLinks = [
-  {
-    "link": "/sign-in",
-    "label": "Iniciar sesión"
-  },
-  {
-    "link": "/sign-up",
-    "label": "Registrarse"
-  },
-  {
-    "link": "/candidates",
-    "label": "Candidatos"
-  }
 ]

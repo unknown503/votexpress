@@ -2,7 +2,6 @@ import { FC, ReactNode, useEffect } from 'react';
 import Head from 'next/head'
 import { useRouter } from 'next/router';
 import Footer from './layout/Footer';
-import { FooterLinks } from '@/config/links';
 import Header from './layout/Header';
 import AdminSidebarAndHeader from './layout/AdminSidebarAndHeader';
 import { ModalsProvider } from '@mantine/modals';
@@ -93,7 +92,7 @@ export const Layout: FC<IWrapperProps> = ({ children }) => {
             <main className="min-h-[80vh] xl:min-h-[82vh]">
               {children}
             </main>
-            <Footer links={FooterLinks} />
+            <Footer/>
           </>
         }
       </ModalsProvider>
