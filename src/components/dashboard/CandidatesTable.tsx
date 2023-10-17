@@ -221,7 +221,7 @@ export default function CandidatesTable({ data, isLoading, isSuccess, showVotes,
                         onClick={() => onEnabledToggleHandler({ id: candidate.id, current: candidate.data.enabled })}
                         labelPosition="left"
                         className="flex justify-center"
-                        disabled={toggleEnabledMutation.isLoading}
+                        disabled={toggleEnabledMutation.isLoading || electionInProgress}
                         size="md"
                         color="teal"
                         thumbIcon={
