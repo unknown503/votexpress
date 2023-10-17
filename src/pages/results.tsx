@@ -57,7 +57,7 @@ export default function candidates() {
 
   useEffect(() => {
     if (!ballot || !metadata || !candidates) return
-    
+
     if (candidates.length < 2) {
       router.replace("/")
       return
@@ -65,7 +65,6 @@ export default function candidates() {
     ballot.clean && router.replace("/candidates")
     !metadata.metadata.vote?.status && router.replace("/vote")
   }, [ballot, metadata, candidates])
-
 
   return (
     <Container className="py-10 lg:py-20 mx-auto h-full text-center">
@@ -193,7 +192,7 @@ export const getServerSideProps: GetServerSideProps = async ctx => {
   const { vote } = await getUserPrivMetadata(userId || "")
   const ballot = await getBallotSettings()
 
-  if (vote && !vote.status && ballot.inProgress) {
+  if (!vote?.status && ballot.inProgress) {
     return {
       redirect: {
         destination: "/vote",
