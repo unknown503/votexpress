@@ -43,6 +43,7 @@ export default function Footer() {
     queryKey: [QUERY_KEYS.BALLOT_SETTINGS],
     queryFn: () => getBallotSettings(),
     onError: (error: any) => Toast(error.message),
+    refetchInterval: Project.refetchInterval
   })
 
   const filteredLinks: typeof Links = useMemo(() => {
@@ -60,7 +61,7 @@ export default function Footer() {
       color="dimmed"
       key={link.label}
       href={link.link}
-      onClick={(event) => event.preventDefault()}
+      onClick={(event: any) => event.preventDefault()}
       size="sm"
     >
       {link.label}

@@ -17,6 +17,7 @@ import { getAuth } from "@clerk/nextjs/server";
 import { GetServerSideProps } from "next";
 import Badge from "@/components/util/Badge";
 import { useRouter } from "next/router";
+import { Project } from "@/config/projectData";
 
 export default function candidates() {
   const [Sections, setSections] = useState({ first: 0, second: 0 })
@@ -26,7 +27,8 @@ export default function candidates() {
     queryKey: [QUERY_KEYS.CANDIDATES_BY_VOTES],
     queryFn: () => getCandidatesByVotes(),
     onError: (error: any) => Toast(error.message),
-    select: (data: DocumentI[]) => data.filter(cand => cand.data.enabled === true)
+    select: (data: DocumentI[]) => data.filter(cand => cand.data.enabled === true),
+    refetchInterval: Project.refetchInterval
   })
 
   const { data: ballot } = useQuery({
@@ -35,6 +37,7 @@ export default function candidates() {
     onError: (error: any) => {
       Toast(error.message)
     },
+    refetchInterval: Project.refetchInterval
   })
 
   const { data: metadata } = useQuery({

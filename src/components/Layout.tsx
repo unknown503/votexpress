@@ -34,12 +34,14 @@ export const Layout: FC<IWrapperProps> = ({ children }) => {
     onError: (error: any) => {
       Toast(error.message)
     },
+    refetchInterval: Project.refetchInterval
   })
 
   const { data: candidates } = useQuery({
     queryKey: [QUERY_KEYS.CANDIDATES],
     queryFn: () => getCandidates(),
     onError: (error: any) => Toast(error.message),
+    refetchInterval: Project.refetchInterval
   })
 
   const resetMutation = useMutation({

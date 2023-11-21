@@ -32,6 +32,7 @@ export default function AdminSidebarAndHeader({ children }: Props) {
     onError: (error: any) => {
       Toast(error.message)
     },
+    refetchInterval: Project.refetchInterval
   })
 
   useEffect(() => {

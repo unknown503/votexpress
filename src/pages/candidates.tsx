@@ -1,6 +1,7 @@
 import Toast from "@/components/Toast";
 import { CandidateCardDetailed } from "@/components/util/CandidateCardDetailed";
 import SkeletonGroup from "@/components/util/Skeleton";
+import { Project } from "@/config/projectData";
 import { DocumentI, QUERY_KEYS } from "@/config/types";
 import { getBallotSettings, getCandidates } from "@/lib/db";
 import { useUser } from "@clerk/nextjs";
@@ -29,6 +30,7 @@ export default function candidates() {
     onError: (error: any) => {
       Toast(error.message)
     },
+    refetchInterval: Project.refetchInterval
   })
 
   useEffect(() => {

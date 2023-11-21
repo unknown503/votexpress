@@ -4,7 +4,7 @@ import Timer from '@/components/dashboard/Timer'
 import { Question, Restart, RightArrow } from '@/components/icons/Icons'
 import Toast from '@/components/Toast'
 import Badge from '@/components/util/Badge'
-import { BallotPageMinimums } from '@/config/projectData'
+import { BallotPageMinimums, Project } from '@/config/projectData'
 import { DocumentI, QUERY_KEYS } from '@/config/types'
 import { finishBallot, getBallotSettings, getCandidatesByVotes, getVotesCount, resetBallot, startBallot } from '@/lib/db'
 import { fetchUserList } from '@/lib/user'
@@ -59,18 +59,21 @@ export default function Ballot() {
       {
         queryKey: [QUERY_KEYS.BALLOT_SETTINGS],
         queryFn: getBallotSettings,
-        onError: (error: any) => Toast(error.message)
+        onError: (error: any) => Toast(error.message),
+        refetchInterval: Project.refetchInterval
       },
       {
         queryKey: [QUERY_KEYS.CANDIDATES_BY_VOTES],
         queryFn: getCandidatesByVotes,
         onError: (error: any) => Toast(error.message),
-        select: (data: DocumentI[]) => data.filter(cand => cand.data.enabled === true)
+        select: (data: DocumentI[]) => data.filter(cand => cand.data.enabled === true),
+        refetchInterval: 10000
       },
       {
         queryKey: [QUERY_KEYS.VOTES],
         queryFn: getVotesCount,
-        onError: (error: any) => Toast(error.message)
+        onError: (error: any) => Toast(error.message),
+        refetchInterval: Project.refetchInterval
       },
     ],
   })

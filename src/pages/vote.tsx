@@ -1,6 +1,7 @@
 import Toast from "@/components/Toast";
 import CandidateCard from "@/components/util/CandidateCard";
 import SkeletonGroup from "@/components/util/Skeleton";
+import { Project } from "@/config/projectData";
 import { BallotTypes, DocumentI, QUERY_KEYS } from "@/config/types";
 import { addNewVoteWithDate, getBallotSettings, getCandidates, increaseCandidateVote } from "@/lib/db";
 import { getUserPrivMetadata } from "@/lib/user";
@@ -38,6 +39,7 @@ export default function vote() {
     onError: (error: any) => {
       Toast(error.message)
     },
+    refetchInterval: Project.refetchInterval
   })
 
   useEffect(() => {

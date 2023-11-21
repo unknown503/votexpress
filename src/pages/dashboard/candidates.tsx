@@ -14,6 +14,7 @@ import { useForm } from "@mantine/form";
 import { useId } from '@mantine/hooks';
 import CandidatesTable from "@/components/dashboard/CandidatesTable";
 import { modals } from '@mantine/modals'
+import { Project } from "@/config/projectData";
 
 const useStyles = createStyles((theme) => ({
   wrapper: {
@@ -60,12 +61,14 @@ export default function candidates() {
     queryKey: [QUERY_KEYS.CANDIDATES_BY_VOTES],
     queryFn: () => getCandidatesByVotes(),
     onError: (error: any) => Toast(error.message),
+    refetchInterval: Project.refetchInterval
   })
 
   const { data: ballot } = useQuery({
     queryKey: [QUERY_KEYS.BALLOT_SETTINGS],
     queryFn: () => getBallotSettings(),
-    onError: (error: any) => Toast(error.message)
+    onError: (error: any) => Toast(error.message),
+    refetchInterval: Project.refetchInterval
   })
 
   const form = useForm<CandidatesFormI>({
@@ -231,7 +234,7 @@ export default function candidates() {
                     </div>
                   </SimpleGrid>
                   <DateInput
-                    dateParser={(input) => {
+                    dateParser={(input: any) => {
                       if (input === 'WW2') {
                         return new Date(1939, 8, 1);
                       }

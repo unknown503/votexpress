@@ -129,6 +129,7 @@ function NavLinksComponent({ closeDrawer }: NavLinksProps) {
     queryKey: [QUERY_KEYS.BALLOT_SETTINGS],
     queryFn: () => getBallotSettings(),
     onError: (error: any) => Toast(error.message),
+    refetchInterval: Project.refetchInterval
   })
 
   const filteredLinks = useMemo(() => {

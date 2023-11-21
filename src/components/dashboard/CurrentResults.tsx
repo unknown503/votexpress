@@ -1,3 +1,4 @@
+import { Project } from "@/config/projectData"
 import { QUERY_KEYS } from "@/config/types"
 import { getBallotSettings } from "@/lib/db"
 import useFinalResults from "@/lib/hooks/useFinalResults"
@@ -16,6 +17,7 @@ export default function CurrentResults() {
     onError: (error: any) => {
       Toast(error.message)
     },
+    refetchInterval: Project.refetchInterval
   })
 
   return (

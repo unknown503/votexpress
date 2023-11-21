@@ -1,7 +1,8 @@
 import { IconGauge, IconUser, IconCookie, IconShieldCheck, IconUsers, IconCheck } from '@tabler/icons-react';
 
 export const Project = {
-  name: "VoteXpress"
+  name: "VoteXpress",
+  refetchInterval: 6000
 }
 
 export const BallotPageMinimums = {

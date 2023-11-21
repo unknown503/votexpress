@@ -3,6 +3,7 @@ import HeaderTitle from "@/components/dashboard/HeaderTitle";
 import Stats, { StatsGridProps } from "@/components/dashboard/Stats";
 import Toast from "@/components/Toast";
 import SkeletonGroup from "@/components/util/Skeleton";
+import { Project } from "@/config/projectData";
 import { DocumentI, QUERY_KEYS } from "@/config/types";
 import { getBallotSettings, getCandidates } from "@/lib/db";
 import { fetchUserList, getNumberOfVoters } from "@/lib/user";
@@ -17,22 +18,23 @@ export default function Dashboard() {
         queryKey: [QUERY_KEYS.CANDIDATES],
         queryFn: getCandidates,
         onError: (error: any) => Toast(error.message),
-        select: (data: DocumentI[]) => data.filter(cand => cand.data.enabled === true)
+        select: (data: DocumentI[]) => data.filter(cand => cand.data.enabled === true),
       },
       {
         queryKey: [QUERY_KEYS.USERS],
         queryFn: fetchUserList,
-        onError: (error: any) => Toast(error.message)
+        onError: (error: any) => Toast(error.message),
       },
       {
         queryKey: [QUERY_KEYS.VOTERS],
         queryFn: getNumberOfVoters,
-        onError: (error: any) => Toast(error.message)
+        refetchInterval: Project.refetchInterval
       },
       {
         queryKey: [QUERY_KEYS.BALLOT_SETTINGS],
         queryFn: getBallotSettings,
-        onError: (error: any) => Toast(error.message)
+        onError: (error: any) => Toast(error.message),
+        refetchInterval: Project.refetchInterval
       },
     ],
   })
@@ -53,8 +55,6 @@ export default function Dashboard() {
       },
     ]
   }
-
-  const isAnythingLoading = results[0].isLoading || results[1].isLoading || results[2].isLoading || results[3].isLoading
 
   return (
     <div className="pb-6">

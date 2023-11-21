@@ -1,4 +1,5 @@
 import Toast from '@/components/Toast';
+import { Project } from '@/config/projectData';
 import { QUERY_KEYS } from '@/config/types';
 import { getCandidates } from '@/lib/db';
 import { Loader, Paper } from '@mantine/core';
@@ -34,6 +35,7 @@ export const BarChart: FC<HTMLAttributes<HTMLDivElement>> = ({ ...props }) => {
     queryKey: [QUERY_KEYS.CANDIDATES],
     queryFn: () => getCandidates(),
     onError: (error: any) => Toast(error.message),
+    refetchInterval: Project.refetchInterval
   })
 
   const BarData = useMemo(() => {

@@ -6,12 +6,14 @@ import { QUERY_KEYS } from '@/config/types';
 import { getVotesCollection } from '@/lib/db';
 import { useQuery } from '@tanstack/react-query';
 import { Loader } from "@mantine/core";
+import { Project } from "@/config/projectData";
 
 export default function Graphs() {
   const { data: votes, isLoading } = useQuery({
     queryKey: [QUERY_KEYS.VOTES_COLLECTION],
     queryFn: () => getVotesCollection(),
     onError: (error: any) => Toast(error.message),
+    refetchInterval: Project.refetchInterval
   })
 
   return (
